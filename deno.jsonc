@@ -1,0 +1,49 @@
+{
+	"$schema": "https://deno.land/x/deno/cli/schemas/config-file.v1.json",
+	"fmt": {
+		"indentWidth": 4,
+		"lineWidth": 800,
+		"proseWrap": "preserve",
+		"semiColons": true,
+		"singleQuote": false,
+		"useTabs": true
+	},
+	"imports": { // IMPORTANT: Only remap development dependencies!
+		"DNT": "https://raw.githubusercontent.com/hugoalh-studio/deno-nodejs-transformer/refs/tags/v0.4.0/mod.ts",
+		"STD/assert": "jsr:@std/assert@^1.0.6"
+	},
+	"lint": {
+		"rules": {
+			"tags": [
+				"recommended"
+			],
+			"include": [
+				"default-param-last",
+				"eqeqeq",
+				"guard-for-in",
+				"no-const-assign",
+				"no-eval",
+				"no-non-null-asserted-optional-chain",
+				"no-self-compare",
+				"no-sparse-arrays",
+				"no-sync-fn-in-async-fn",
+				"no-undef",
+				"triple-slash-reference",
+				"verbatim-module-syntax"
+			]
+		}
+	},
+	"lock": false,
+	"tasks": {
+		// Check deployment for JSR.
+		"jsr-check": "deno publish --allow-dirty --config jsr.jsonc --dry-run --no-provenance",
+		// Publish package to JSR.
+		"jsr-publish": "deno publish --allow-dirty --config jsr.jsonc --no-provenance",
+		// Publish package to JSR (provenance).
+		"jsr-publish-provenance": "deno publish --allow-dirty --config jsr.jsonc",
+		// Build package for NPM.
+		"npm-build": "deno run --allow-all --no-prompt --quiet .dnt.ts"
+	},
+	"unstable": [
+	]
+}
