@@ -22,7 +22,7 @@ export interface EnvDelimitation {
 	 * Get the value of an environment variable with inter-handle delimiter.
 	 * 
 	 * > **🛡️ Require Runtime Permissions**
-	 * >
+	 * > 
 	 * > - Deno
 	 * >   - Environment Variable (`env`)
 	 * >     - *Resources*
@@ -34,7 +34,7 @@ export interface EnvDelimitation {
 	 * Set the value of an environment variable with inter-handle delimiter.
 	 * 
 	 * > **🛡️ Require Runtime Permissions**
-	 * >
+	 * > 
 	 * > - Deno
 	 * >   - Environment Variable (`env`)
 	 * >     - *Resources*
@@ -48,7 +48,7 @@ export interface EnvDelimitation {
  * Get the value of an environment variable with inter-handle delimiter.
  * 
  * > **🛡️ Require Runtime Permissions**
- * >
+ * > 
  * > - Deno
  * >   - Environment Variable (`env`)
  * >     - *Resources*
@@ -64,7 +64,7 @@ export const getEnvWithDelimitation: EnvDelimitation["get"] = (key: string): str
  * Set the value of an environment variable with inter-handle delimiter.
  * 
  * > **🛡️ Require Runtime Permissions**
- * >
+ * > 
  * > - Deno
  * >   - Environment Variable (`env`)
  * >     - *Resources*

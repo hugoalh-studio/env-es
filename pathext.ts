@@ -1,5 +1,12 @@
 import { envDelimitation } from "./delimitation.ts";
 const isOSWindows: boolean = Deno.build.os === "windows";
+function assertValuesFileExtension(...values: string[]): void {
+	values.forEach((value: string): void => {
+		if (!value.startsWith(".")) {
+			throw new SyntaxError(`\`${value}\` is not an valid file extension!`);
+		}
+	});
+}
 function getEnvPathExtInternal() {
 	const resultArray: string[] = envDelimitation.get("PATHEXT");
 	const resultSet: Set<string> = new Set<string>(resultArray);
@@ -16,7 +23,7 @@ export interface EnvPathExt {
 	 * Add value to the environment variable `PATHEXT`.
 	 * 
 	 * > **🛡️ Require Runtime Permissions**
-	 * >
+	 * > 
 	 * > - Deno
 	 * >   - Environment Variable (`env`)
 	 * >     - `PATHEXT`
@@ -28,7 +35,7 @@ export interface EnvPathExt {
 	 * Delete value from the environment variable `PATHEXT`.
 	 * 
 	 * > **🛡️ Require Runtime Permissions**
-	 * >
+	 * > 
 	 * > - Deno
 	 * >   - Environment Variable (`env`)
 	 * >     - `PATHEXT`
@@ -40,7 +47,7 @@ export interface EnvPathExt {
 	 * Get the values of the environment variable `PATHEXT`; Always return `null` for non-Windows operate system.
 	 * 
 	 * > **🛡️ Require Runtime Permissions**
-	 * >
+	 * > 
 	 * > - Deno
 	 * >   - Environment Variable (`env`)
 	 * >     - `PATHEXT`
@@ -52,7 +59,7 @@ export interface EnvPathExt {
  * Add value to the environment variable `PATHEXT`.
  * 
  * > **🛡️ Require Runtime Permissions**
- * >
+ * > 
  * > - Deno
  * >   - Environment Variable (`env`)
  * >     - `PATHEXT`
@@ -60,11 +67,7 @@ export interface EnvPathExt {
  * @returns {void}
  */
 export const addEnvPathExt: EnvPathExt["add"] = (...values: string[]): void => {
-	values.forEach((value: string): void => {
-		if (!value.startsWith(".")) {
-			throw new SyntaxError(`\`${value}\` is not an valid file extension!`);
-		}
-	});
+	assertValuesFileExtension(...values);
 	if (isOSWindows && values.length > 0) {
 		const { result: target } = getEnvPathExtInternal();
 		for (const value of values) {
@@ -77,7 +80,7 @@ export const addEnvPathExt: EnvPathExt["add"] = (...values: string[]): void => {
  * Delete value from the environment variable `PATHEXT`.
  * 
  * > **🛡️ Require Runtime Permissions**
- * >
+ * > 
  * > - Deno
  * >   - Environment Variable (`env`)
  * >     - `PATHEXT`
@@ -85,11 +88,7 @@ export const addEnvPathExt: EnvPathExt["add"] = (...values: string[]): void => {
  * @returns {void}
  */
 export const deleteEnvPathExt: EnvPathExt["delete"] = (...values: string[]): void => {
-	values.forEach((value: string): void => {
-		if (!value.startsWith(".")) {
-			throw new SyntaxError(`\`${value}\` is not an valid file extension!`);
-		}
-	});
+	assertValuesFileExtension(...values);
 	if (isOSWindows && values.length > 0) {
 		const {
 			hasDuplicated,
@@ -108,7 +107,7 @@ export const deleteEnvPathExt: EnvPathExt["delete"] = (...values: string[]): voi
  * Get the values of the environment variable `PATHEXT`; Always return `null` for non-Windows operate system.
  * 
  * > **🛡️ Require Runtime Permissions**
- * >
+ * > 
  * > - Deno
  * >   - Environment Variable (`env`)
  * >     - `PATHEXT`

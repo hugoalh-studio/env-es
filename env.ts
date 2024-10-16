@@ -6,7 +6,7 @@ export interface Env {
 	 * Delete an environment variable.
 	 * 
 	 * > **🛡️ Require Runtime Permissions**
-	 * >
+	 * > 
 	 * > - Deno
 	 * >   - Environment Variable (`env`)
 	 * >     - *Resources*
@@ -18,7 +18,7 @@ export interface Env {
 	 * Get the value of an environment variable.
 	 * 
 	 * > **🛡️ Require Runtime Permissions**
-	 * >
+	 * > 
 	 * > - Deno
 	 * >   - Environment Variable (`env`)
 	 * >     - *Resources*
@@ -30,7 +30,7 @@ export interface Env {
 	 * Get a snapshot of the environment variables at invocation as a simple object of keys and values.
 	 * 
 	 * > **🛡️ Require Runtime Permissions**
-	 * >
+	 * > 
 	 * > - Deno
 	 * >   - Environment Variable (`env`)
 	 * >     - *Resources*
@@ -41,7 +41,7 @@ export interface Env {
 	 * Check whether an environment variable is present.
 	 * 
 	 * > **🛡️ Require Runtime Permissions**
-	 * >
+	 * > 
 	 * > - Deno
 	 * >   - Environment Variable (`env`)
 	 * >     - *Resources*
@@ -53,7 +53,7 @@ export interface Env {
 	 * Set an environment variable.
 	 * 
 	 * > **🛡️ Require Runtime Permissions**
-	 * >
+	 * > 
 	 * > - Deno
 	 * >   - Environment Variable (`env`)
 	 * >     - *Resources*
@@ -67,7 +67,7 @@ export interface Env {
  * Delete an environment variable.
  * 
  * > **🛡️ Require Runtime Permissions**
- * >
+ * > 
  * > - Deno
  * >   - Environment Variable (`env`)
  * >     - *Resources*
@@ -79,7 +79,7 @@ export const deleteEnv: Env["delete"] = Deno.env.delete;
  * Get a snapshot of the environment variables at invocation as a simple object of keys and values.
  * 
  * > **🛡️ Require Runtime Permissions**
- * >
+ * > 
  * > - Deno
  * >   - Environment Variable (`env`)
  * >     - *Resources*
@@ -90,7 +90,7 @@ export const getAllEnv: Env["getAll"] = Deno.env.toObject;
  * Get the value of an environment variable.
  * 
  * > **🛡️ Require Runtime Permissions**
- * >
+ * > 
  * > - Deno
  * >   - Environment Variable (`env`)
  * >     - *Resources*
@@ -102,7 +102,7 @@ export const getEnv: Env["get"] = Deno.env.get;
  * Check whether an environment variable is present.
  * 
  * > **🛡️ Require Runtime Permissions**
- * >
+ * > 
  * > - Deno
  * >   - Environment Variable (`env`)
  * >     - *Resources*
@@ -114,7 +114,7 @@ export const hasEnv: Env["has"] = Deno.env.has;
  * Set an environment variable.
  * 
  * > **🛡️ Require Runtime Permissions**
- * >
+ * > 
  * > - Deno
  * >   - Environment Variable (`env`)
  * >     - *Resources*

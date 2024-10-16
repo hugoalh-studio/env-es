@@ -1,5 +1,12 @@
 import { isAbsolute as isPathAbsolute } from "jsr:@std/path@^1.0.6/is-absolute";
 import { envDelimitation } from "./delimitation.ts";
+function assertValuesAbsolutePath(...values: string[]): void {
+	values.forEach((value: string): void => {
+		if (!isPathAbsolute(value)) {
+			throw new SyntaxError(`\`${value}\` is not an absolute path!`);
+		}
+	});
+}
 function getEnvPathInternal() {
 	const resultArray: string[] = envDelimitation.get("PATH");
 	const resultSet: Set<string> = new Set<string>(resultArray);
@@ -16,7 +23,7 @@ export interface EnvPath {
 	 * Add value to the environment variable `PATH`.
 	 * 
 	 * > **🛡️ Require Runtime Permissions**
-	 * >
+	 * > 
 	 * > - Deno
 	 * >   - Environment Variable (`env`)
 	 * >     - `PATH`
@@ -28,7 +35,7 @@ export interface EnvPath {
 	 * Delete value from the environment variable `PATH`.
 	 * 
 	 * > **🛡️ Require Runtime Permissions**
-	 * >
+	 * > 
 	 * > - Deno
 	 * >   - Environment Variable (`env`)
 	 * >     - `PATH`
@@ -40,7 +47,7 @@ export interface EnvPath {
 	 * Get the values of the environment variable `PATH`.
 	 * 
 	 * > **🛡️ Require Runtime Permissions**
-	 * >
+	 * > 
 	 * > - Deno
 	 * >   - Environment Variable (`env`)
 	 * >     - `PATH`
@@ -52,7 +59,7 @@ export interface EnvPath {
  * Add value to the environment variable `PATH`.
  * 
  * > **🛡️ Require Runtime Permissions**
- * >
+ * > 
  * > - Deno
  * >   - Environment Variable (`env`)
  * >     - `PATH`
@@ -60,11 +67,7 @@ export interface EnvPath {
  * @returns {void}
  */
 export const addEnvPath: EnvPath["add"] = (...values: string[]): void => {
-	values.forEach((value: string): void => {
-		if (!isPathAbsolute(value)) {
-			throw new SyntaxError(`\`${value}\` is not an absolute path!`);
-		}
-	});
+	assertValuesAbsolutePath(...values);
 	if (values.length > 0) {
 		const { result: target } = getEnvPathInternal();
 		for (const value of values) {
@@ -77,7 +80,7 @@ export const addEnvPath: EnvPath["add"] = (...values: string[]): void => {
  * Delete value from the environment variable `PATH`.
  * 
  * > **🛡️ Require Runtime Permissions**
- * >
+ * > 
  * > - Deno
  * >   - Environment Variable (`env`)
  * >     - `PATH`
@@ -85,11 +88,7 @@ export const addEnvPath: EnvPath["add"] = (...values: string[]): void => {
  * @returns {void}
  */
 export const deleteEnvPath: EnvPath["delete"] = (...values: string[]): void => {
-	values.forEach((value: string): void => {
-		if (!isPathAbsolute(value)) {
-			throw new SyntaxError(`\`${value}\` is not an absolute path!`);
-		}
-	});
+	assertValuesAbsolutePath(...values);
 	if (values.length > 0) {
 		const {
 			hasDuplicated,
@@ -108,7 +107,7 @@ export const deleteEnvPath: EnvPath["delete"] = (...values: string[]): void => {
  * Get the values of the environment variable `PATH`.
  * 
  * > **🛡️ Require Runtime Permissions**
- * >
+ * > 
  * > - Deno
  * >   - Environment Variable (`env`)
  * >     - `PATH`
