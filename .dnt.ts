@@ -8,25 +8,25 @@ await invokeDenoNodeJSTransformer({
 		"LICENSE.md",
 		"README.md"
 	],
-	entrypoints: configJSR.exports,
+	entrypoints: configJSR.getExports(),
 	generateDeclarationMap: true,
 	metadata: {
-		name: "@hugoalh/env",
-		version: configJSR.version,
+		name: configJSR.getName(),
+		version: configJSR.getVersion(),
 		description: "A module for enhanced environment variables operation.",
 		keywords: [
 			"env",
 			"environment-variables"
 		],
-		homepage: "https://github.com/hugoalh-studio/env-es#readme",
+		homepage: "https://github.com/hugoalh/env-es#readme",
 		bugs: {
-			url: "https://github.com/hugoalh-studio/env-es/issues"
+			url: "https://github.com/hugoalh/env-es/issues"
 		},
 		license: "MIT",
 		author: "hugoalh",
 		repository: {
 			type: "git",
-			url: "git+https://github.com/hugoalh-studio/env-es.git"
+			url: "git+https://github.com/hugoalh/env-es.git"
 		},
 		scripts: {
 		},

@@ -2,7 +2,7 @@
 
 [**⚖️** MIT](./LICENSE.md)
 
-[![GitHub: hugoalh-studio/env-es](https://img.shields.io/github/v/release/hugoalh-studio/env-es?label=hugoalh-studio/env-es&labelColor=181717&logo=github&logoColor=ffffff&sort=semver&style=flat "GitHub: hugoalh-studio/env-es")](https://github.com/hugoalh-studio/env-es)
+[![GitHub: hugoalh/env-es](https://img.shields.io/github/v/release/hugoalh/env-es?label=hugoalh/env-es&labelColor=181717&logo=github&logoColor=ffffff&sort=semver&style=flat "GitHub: hugoalh/env-es")](https://github.com/hugoalh/env-es)
 [![JSR: @hugoalh/env](https://img.shields.io/jsr/v/@hugoalh/env?label=@hugoalh/env&labelColor=F7DF1E&logo=jsr&logoColor=000000&style=flat "JSR: @hugoalh/env")](https://jsr.io/@hugoalh/env)
 [![NPM: @hugoalh/env](https://img.shields.io/npm/v/@hugoalh/env?label=@hugoalh/env&labelColor=CB3837&logo=npm&logoColor=ffffff&style=flat "NPM: @hugoalh/env")](https://www.npmjs.com/package/@hugoalh/env)
 
@@ -25,7 +25,7 @@ An ES (JavaScript & TypeScript) module for enhanced environment variables operat
 
 - **Remote - GitHub Raw:**
   ```
-  https://raw.githubusercontent.com/hugoalh-studio/env-es/{Tag}/mod.ts
+  https://raw.githubusercontent.com/hugoalh/env-es/{Tag}/mod.ts
   ```
 - **JSR:**
   ```
