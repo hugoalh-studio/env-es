@@ -121,7 +121,7 @@ export const getEnvPathExt: EnvPathExt["get"] = (): string[] | null => {
 	if (values.length > 0) {
 		return values;
 	}
-	return [".EXE", ".CMD", ".BAT", ".COM"];
+	return [".com", ".exe", ".bat", ".cmd", ".vbs", ".vbe", ".js", ".jse", ".wsf", ".wsh", ".msc"];
 };
 /**
  * Environment variable `PATHEXT` interface.
