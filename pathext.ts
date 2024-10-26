@@ -1,5 +1,5 @@
+import { isOSWindows } from "./_info.ts";
 import { envDelimitation } from "./delimitation.ts";
-const isOSWindows: boolean = Deno.build.os === "windows";
 function assertValuesFileExtension(...values: string[]): void {
 	values.forEach((value: string): void => {
 		if (!value.startsWith(".")) {

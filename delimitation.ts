@@ -1,19 +1,20 @@
+import { isOSWindows } from "./_info.ts";
 import {
 	getEnv,
 	setEnv
 } from "./env.ts";
 /**
- * Environment variables value delimiter character colon, use on the POSIX/UNIX platforms.
+ * Environment variables value delimiter character colon, use on the POSIX/UNIX operate systems.
  */
 export const delimiterColon = ":" as const;
 /**
- * Environment variables value delimiter character semi colon, use on the Windows platforms.
+ * Environment variables value delimiter character semi colon, use on the Windows operate systems.
  */
 export const delimiterSemiColon = ";" as const;
 /**
- * Environment variables value delimiter character evaluated for the current platform.
+ * Environment variables value delimiter character evaluated for the current operate system.
  */
-export const delimiter: typeof delimiterColon | typeof delimiterSemiColon = (Deno.build.os === "windows") ? delimiterSemiColon : delimiterColon;
+export const delimiter: typeof delimiterColon | typeof delimiterSemiColon = isOSWindows ? delimiterSemiColon : delimiterColon;
 /**
  * Environment variables value delimitation interface.
  */
