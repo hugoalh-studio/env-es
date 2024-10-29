@@ -8,6 +8,17 @@ export {
 	type EnvDelimitation
 } from "./delimitation.ts";
 export {
+	getAllExecutable,
+	getAllExecutableSync,
+	getExecutable,
+	getExecutableSync,
+	isExecutablePath,
+	isExecutablePathSync,
+	type ExecutableEntry,
+	type GetExecutableOptions,
+	type IsExecutablePathOptions
+} from "./executable.ts";
+export {
 	deleteEnv,
 	env,
 	getAllEnv,
