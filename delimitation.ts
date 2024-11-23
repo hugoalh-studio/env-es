@@ -22,11 +22,10 @@ export interface EnvDelimitation {
 	/**
 	 * Get the value of an environment variable with inter-handle delimiter.
 	 * 
-	 * > **🛡️ Require Runtime Permissions**
+	 * > **🛡️ Runtime Permissions**
 	 * > 
-	 * > - Deno
-	 * >   - Environment Variable (`env`)
-	 * >     - *Resources*
+	 * > - Environment Variable \[Deno: `env`\]
+	 * >   - *Resources*
 	 * @param {string} key Key of the environment variable.
 	 * @returns {string[]} Values of the environment variable.
 	 */
@@ -34,11 +33,10 @@ export interface EnvDelimitation {
 	/**
 	 * Set the value of an environment variable with inter-handle delimiter.
 	 * 
-	 * > **🛡️ Require Runtime Permissions**
+	 * > **🛡️ Runtime Permissions**
 	 * > 
-	 * > - Deno
-	 * >   - Environment Variable (`env`)
-	 * >     - *Resources*
+	 * > - Environment Variable \[Deno: `env`\]
+	 * >   - *Resources*
 	 * @param {string} key Key of the environment variable.
 	 * @param {string[]} values Values of the environment variable.
 	 * @returns {void}
@@ -48,15 +46,14 @@ export interface EnvDelimitation {
 /**
  * Get the value of an environment variable with inter-handle delimiter.
  * 
- * > **🛡️ Require Runtime Permissions**
+ * > **🛡️ Runtime Permissions**
  * > 
- * > - Deno
- * >   - Environment Variable (`env`)
- * >     - *Resources*
+ * > - Environment Variable \[Deno: `env`\]
+ * >   - *Resources*
  * @param {string} key Key of the environment variable.
  * @returns {string[]} Values of the environment variable.
  */
-export const getEnvWithDelimitation: EnvDelimitation["get"] = (key: string): string[] => {
+export function getEnvWithDelimitation(key: string): string[] {
 	return (getEnv(key) ?? "").split(delimiter).filter((value: string): boolean => {
 		return (value.length > 0);
 	});
@@ -64,16 +61,15 @@ export const getEnvWithDelimitation: EnvDelimitation["get"] = (key: string): str
 /**
  * Set the value of an environment variable with inter-handle delimiter.
  * 
- * > **🛡️ Require Runtime Permissions**
+ * > **🛡️ Runtime Permissions**
  * > 
- * > - Deno
- * >   - Environment Variable (`env`)
- * >     - *Resources*
+ * > - Environment Variable \[Deno: `env`\]
+ * >   - *Resources*
  * @param {string} key Key of the environment variable.
  * @param {string[]} values Values of the environment variable.
  * @returns {void}
  */
-export const setEnvWithDelimitation: EnvDelimitation["set"] = (key: string, values: string[]): void => {
+export function setEnvWithDelimitation(key: string, values: string[]): void {
 	return setEnv(key, values.filter((value: string): boolean => {
 		return (value.length > 0);
 	}).join(delimiter));

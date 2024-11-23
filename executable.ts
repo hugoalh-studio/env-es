@@ -39,20 +39,16 @@ export interface ExecutableEntry {
 /**
  * Get the information of the executables, asynchronously.
  * 
- * > **🛡️ Require Runtime Permissions**
+ * > **🛡️ Runtime Permissions**
  * > 
- * > - Deno
- * >   - Environment (`env`)
- * >     - `PATH`
- * >     - `PATHEXT`
- * >   - File System - Read (`read`)
- * >     - *Resources*
- * >   - System Info (`sys`)
- * >     - `gid`
- * >     - `uid`
- * > - NodeJS (>= v20.9.0) 🧪
- * >   - File System - Read (`fs-read`)
- * >     - *Resources*
+ * > - Environment Variable \[Deno: `env`\]
+ * >   - `PATH`
+ * >   - `PATHEXT` (Windows Platforms)
+ * > - File System - Read \[Deno: `read`; NodeJS (>= v20.9.0) 🧪: `fs-read`\]
+ * >   - *Resources*
+ * > - System Info \[Deno: `sys`\]
+ * >   - `gid` (POSIX/UNIX Platforms)
+ * >   - `uid` (POSIX/UNIX Platforms)
  * @param {GetExecutableOptions} [options={}] Options.
  * @returns {AsyncGenerator<ExecutableEntry>} An async iterable iterator that yield the information of the executables.
  */
@@ -123,20 +119,16 @@ export async function* getAllExecutable(options: GetExecutableOptions = {}): Asy
 /**
  * Get the information of the executables, synchronously.
  * 
- * > **🛡️ Require Runtime Permissions**
+ * > **🛡️ Runtime Permissions**
  * > 
- * > - Deno
- * >   - Environment (`env`)
- * >     - `PATH`
- * >     - `PATHEXT`
- * >   - File System - Read (`read`)
- * >     - *Resources*
- * >   - System Info (`sys`)
- * >     - `gid`
- * >     - `uid`
- * > - NodeJS (>= v20.9.0) 🧪
- * >   - File System - Read (`fs-read`)
- * >     - *Resources*
+ * > - Environment Variable \[Deno: `env`\]
+ * >   - `PATH`
+ * >   - `PATHEXT` (Windows Platforms)
+ * > - File System - Read \[Deno: `read`; NodeJS (>= v20.9.0) 🧪: `fs-read`\]
+ * >   - *Resources*
+ * > - System Info \[Deno: `sys`\]
+ * >   - `gid` (POSIX/UNIX Platforms)
+ * >   - `uid` (POSIX/UNIX Platforms)
  * @param {GetExecutableOptions} [options={}] Options.
  * @returns {Generator<ExecutableEntry>} An iterable iterator that yield the information of the executables.
  */
@@ -207,20 +199,16 @@ export function* getAllExecutableSync(options: GetExecutableOptions = {}): Gener
 /**
  * Get the information of the executable, asynchronously.
  * 
- * > **🛡️ Require Runtime Permissions**
+ * > **🛡️ Runtime Permissions**
  * > 
- * > - Deno
- * >   - Environment (`env`)
- * >     - `PATH`
- * >     - `PATHEXT`
- * >   - File System - Read (`read`)
- * >     - *Resources*
- * >   - System Info (`sys`)
- * >     - `gid`
- * >     - `uid`
- * > - NodeJS (>= v20.9.0) 🧪
- * >   - File System - Read (`fs-read`)
- * >     - *Resources*
+ * > - Environment Variable \[Deno: `env`\]
+ * >   - `PATH`
+ * >   - `PATHEXT` (Windows Platforms)
+ * > - File System - Read \[Deno: `read`; NodeJS (>= v20.9.0) 🧪: `fs-read`\]
+ * >   - *Resources*
+ * > - System Info \[Deno: `sys`\]
+ * >   - `gid` (POSIX/UNIX Platforms)
+ * >   - `uid` (POSIX/UNIX Platforms)
  * @param {Omit<GetExecutableOptions, "filter">} [options={}] Options.
  * @returns {Promise<ExecutableEntry | undefined>} The information of the executable.
  */
@@ -236,20 +224,16 @@ export async function getExecutable(specifier: string, options: Omit<GetExecutab
 /**
  * Get the information of the executable, synchronously.
  * 
- * > **🛡️ Require Runtime Permissions**
+ * > **🛡️ Runtime Permissions**
  * > 
- * > - Deno
- * >   - Environment (`env`)
- * >     - `PATH`
- * >     - `PATHEXT`
- * >   - File System - Read (`read`)
- * >     - *Resources*
- * >   - System Info (`sys`)
- * >     - `gid`
- * >     - `uid`
- * > - NodeJS (>= v20.9.0) 🧪
- * >   - File System - Read (`fs-read`)
- * >     - *Resources*
+ * > - Environment Variable \[Deno: `env`\]
+ * >   - `PATH`
+ * >   - `PATHEXT` (Windows Platforms)
+ * > - File System - Read \[Deno: `read`; NodeJS (>= v20.9.0) 🧪: `fs-read`\]
+ * >   - *Resources*
+ * > - System Info \[Deno: `sys`\]
+ * >   - `gid` (POSIX/UNIX Platforms)
+ * >   - `uid` (POSIX/UNIX Platforms)
  * @param {Omit<GetExecutableOptions, "filter">} [options={}] Options.
  * @returns {ExecutableEntry | undefined} The information of the executable.
  */
@@ -284,12 +268,11 @@ export interface IsExecutablePathOptions {
 /**
  * Determine whether the path is executable on the POSIX/UNIX operate system.
  * 
- * > **🛡️ Require Runtime Permissions**
+ * > **🛡️ Runtime Permissions**
  * > 
- * > - Deno
- * >   - System Info (`sys`)
- * >     - `gid`
- * >     - `uid`
+ * > - System Info \[Deno: `sys`\]
+ * >   - `gid`
+ * >   - `uid`
  * @param {Deno.FileInfo} stat Stat of the path.
  * @param {IsExecutablePathOptions} [options={}] Options.
  * @returns {boolean} Determine result.
@@ -330,12 +313,6 @@ function isExecutablePathInternalPOSIX(stat: Deno.FileInfo, options: IsExecutabl
 }
 /**
  * Determine whether the path is executable on the Windows operate system.
- * 
- * > **🛡️ Require Runtime Permissions**
- * > 
- * > - Deno
- * >   - Environment (`env`)
- * >     - `PATHEXT`
  * @returns {boolean} Determine result.
  */
 function isExecutablePathInternalWindows(path: string, stat: Deno.FileInfo, pathExts: string[]): boolean {
@@ -348,12 +325,26 @@ function isExecutablePathInternalWindows(path: string, stat: Deno.FileInfo, path
 		return (pathLowerCase !== pathExtLowerCase && pathLowerCase.endsWith(pathExtLowerCase));
 	});
 }
-async function isExecutablePathInternal(path: string, options: IsExecutablePathOptions, pathExts: string[] | null = getEnvPathExt()): Promise<boolean> {
+/**
+ * Determine whether the path is executable, asynchronously.
+ * 
+ * > **🛡️ Runtime Permissions**
+ * > 
+ * > - Environment Variable \[Deno: `env`\]
+ * >   - `PATHEXT` (Windows Platforms)
+ * > - File System - Read \[Deno: `read`; NodeJS (>= v20.9.0) 🧪: `fs-read`\]
+ * >   - *Resources*
+ * > - System Info \[Deno: `sys`\]
+ * >   - `gid` (POSIX/UNIX Platforms)
+ * >   - `uid` (POSIX/UNIX Platforms)
+ * @returns {Promise<boolean>} Determine result.
+ */
+async function isExecutablePathInternal(path: string, options: IsExecutablePathOptions, pathExts?: string[] | null): Promise<boolean> {
 	const { mayNotExist = false } = options;
 	try {
 		const stat: Deno.FileInfo = await Deno.stat(path);
 		if (isOSWindows) {
-			return isExecutablePathInternalWindows(path, stat, pathExts!);
+			return isExecutablePathInternalWindows(path, stat, pathExts ?? getEnvPathExt()!);
 		}
 		return isExecutablePathInternalPOSIX(stat, options);
 	} catch (error) {
@@ -363,12 +354,26 @@ async function isExecutablePathInternal(path: string, options: IsExecutablePathO
 		throw error;
 	}
 }
-function isExecutablePathInternalSync(path: string, options: IsExecutablePathOptions, pathExts: string[] | null = getEnvPathExt()): boolean {
+/**
+ * Determine whether the path is executable, synchronously.
+ * 
+ * > **🛡️ Runtime Permissions**
+ * > 
+ * > - Environment Variable \[Deno: `env`\]
+ * >   - `PATHEXT` (Windows Platforms)
+ * > - File System - Read \[Deno: `read`; NodeJS (>= v20.9.0) 🧪: `fs-read`\]
+ * >   - *Resources*
+ * > - System Info \[Deno: `sys`\]
+ * >   - `gid` (POSIX/UNIX Platforms)
+ * >   - `uid` (POSIX/UNIX Platforms)
+ * @returns {boolean} Determine result.
+ */
+function isExecutablePathInternalSync(path: string, options: IsExecutablePathOptions, pathExts?: string[] | null): boolean {
 	const { mayNotExist = false } = options;
 	try {
 		const stat: Deno.FileInfo = Deno.statSync(path);
 		if (isOSWindows) {
-			return isExecutablePathInternalWindows(path, stat, pathExts!);
+			return isExecutablePathInternalWindows(path, stat, pathExts ?? getEnvPathExt()!);
 		}
 		return isExecutablePathInternalPOSIX(stat, options);
 	} catch (error) {
@@ -381,19 +386,15 @@ function isExecutablePathInternalSync(path: string, options: IsExecutablePathOpt
 /**
  * Determine whether the path is executable on the current operate system, asynchronously.
  * 
- * > **🛡️ Require Runtime Permissions**
+ * > **🛡️ Runtime Permissions**
  * > 
- * > - Deno
- * >   - Environment (`env`)
- * >     - `PATHEXT`
- * >   - File System - Read (`read`)
- * >     - *Resources*
- * >   - System Info (`sys`)
- * >     - `gid`
- * >     - `uid`
- * > - NodeJS (>= v20.9.0) 🧪
- * >   - File System - Read (`fs-read`)
- * >     - *Resources*
+ * > - Environment Variable \[Deno: `env`\]
+ * >   - `PATHEXT` (Windows Platforms)
+ * > - File System - Read \[Deno: `read`; NodeJS (>= v20.9.0) 🧪: `fs-read`\]
+ * >   - *Resources*
+ * > - System Info \[Deno: `sys`\]
+ * >   - `gid` (POSIX/UNIX Platforms)
+ * >   - `uid` (POSIX/UNIX Platforms)
  * @param {string} path Path.
  * @param {IsExecutablePathOptions} [options={}] Options.
  * @returns {Promise<boolean>} Determine result.
@@ -404,19 +405,15 @@ export function isExecutablePath(path: string, options: IsExecutablePathOptions 
 /**
  * Determine whether the path is executable on the current operate system, synchronously.
  * 
- * > **🛡️ Require Runtime Permissions**
+ * > **🛡️ Runtime Permissions**
  * > 
- * > - Deno
- * >   - Environment (`env`)
- * >     - `PATHEXT`
- * >   - File System - Read (`read`)
- * >     - *Resources*
- * >   - System Info (`sys`)
- * >     - `gid`
- * >     - `uid`
- * > - NodeJS (>= v20.9.0) 🧪
- * >   - File System - Read (`fs-read`)
- * >     - *Resources*
+ * > - Environment Variable \[Deno: `env`\]
+ * >   - `PATHEXT` (Windows Platforms)
+ * > - File System - Read \[Deno: `read`; NodeJS (>= v20.9.0) 🧪: `fs-read`\]
+ * >   - *Resources*
+ * > - System Info \[Deno: `sys`\]
+ * >   - `gid` (POSIX/UNIX Platforms)
+ * >   - `uid` (POSIX/UNIX Platforms)
  * @param {string} path Path.
  * @param {IsExecutablePathOptions} [options={}] Options.
  * @returns {boolean} Determine result.

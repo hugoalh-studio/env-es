@@ -47,13 +47,19 @@ An ES (JavaScript & TypeScript) module for enhanced environment variables operat
 > - For usage of JSR or NPM resources, it is recommended to import the entire module with the main entrypoint, however it is also able to import part of the module with sub entrypoint if available, please visit the [file `jsr.jsonc`](./jsr.jsonc) property `exports` for available sub entrypoints.
 > - It is recommended to use this module with tag for immutability.
 
-### 🛡️ Require Runtime Permissions
+### 🛡️ Runtime Permissions
 
-- [Deno](https://docs.deno.com/runtime/fundamentals/security/)
-  - Environment Variable (`env`)
-    - *Resources*
+- Environment Variable \[Deno: `env`\]
+  - `PATH` (Optional)
+  - `PATHEXT` (Optional, Windows Platforms)
+  - *Resources*
+- File System - Read \[Deno: `read`; NodeJS (>= v20.9.0) 🧪: `fs-read`\]
+  - *Resources* (Optional)
+- System Info \[Deno: `sys`\]
+  - `gid` (Optional, POSIX/UNIX Platforms)
+  - `uid` (Optional, POSIX/UNIX Platforms)
 
-## 🧩 APIs (Excerpt)
+## 🧩 APIs
 
 - ```ts
   const env: Env;

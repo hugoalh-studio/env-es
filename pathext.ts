@@ -22,11 +22,10 @@ export interface EnvPathExt {
 	/**
 	 * Add value to the environment variable `PATHEXT`.
 	 * 
-	 * > **🛡️ Require Runtime Permissions**
+	 * > **🛡️ Runtime Permissions**
 	 * > 
-	 * > - Deno
-	 * >   - Environment Variable (`env`)
-	 * >     - `PATHEXT`
+	 * > - Environment Variable \[Deno: `env`\]
+	 * >   - `PATHEXT` (Windows Platforms)
 	 * @param {...string} values Value that need to add to the environment variable `PATHEXT`.
 	 * @returns {void}
 	 */
@@ -34,11 +33,10 @@ export interface EnvPathExt {
 	/**
 	 * Delete value from the environment variable `PATHEXT`.
 	 * 
-	 * > **🛡️ Require Runtime Permissions**
+	 * > **🛡️ Runtime Permissions**
 	 * > 
-	 * > - Deno
-	 * >   - Environment Variable (`env`)
-	 * >     - `PATHEXT`
+	 * > - Environment Variable \[Deno: `env`\]
+	 * >   - `PATHEXT` (Windows Platforms)
 	 * @param {...string} values Value that need to delete from the environment variable `PATHEXT`.
 	 * @returns {void}
 	 */
@@ -46,11 +44,10 @@ export interface EnvPathExt {
 	/**
 	 * Get the values of the environment variable `PATHEXT`; Always return `null` for non Windows operate system.
 	 * 
-	 * > **🛡️ Require Runtime Permissions**
+	 * > **🛡️ Runtime Permissions**
 	 * > 
-	 * > - Deno
-	 * >   - Environment Variable (`env`)
-	 * >     - `PATHEXT`
+	 * > - Environment Variable \[Deno: `env`\]
+	 * >   - `PATHEXT` (Windows Platforms)
 	 * @returns {string[] | null} Values of the environment variable `PATHEXT`.
 	 */
 	get(): string[] | null;
@@ -58,15 +55,14 @@ export interface EnvPathExt {
 /**
  * Add value to the environment variable `PATHEXT`.
  * 
- * > **🛡️ Require Runtime Permissions**
+ * > **🛡️ Runtime Permissions**
  * > 
- * > - Deno
- * >   - Environment Variable (`env`)
- * >     - `PATHEXT`
+ * > - Environment Variable \[Deno: `env`\]
+ * >   - `PATHEXT` (Windows Platforms)
  * @param {...string} values Value that need to add to the environment variable `PATHEXT`.
  * @returns {void}
  */
-export const addEnvPathExt: EnvPathExt["add"] = (...values: string[]): void => {
+export function addEnvPathExt(...values: string[]): void {
 	assertValuesFileExtension(...values);
 	if (isOSWindows && values.length > 0) {
 		const { result: target } = getEnvPathExtInternal();
@@ -79,15 +75,14 @@ export const addEnvPathExt: EnvPathExt["add"] = (...values: string[]): void => {
 /**
  * Delete value from the environment variable `PATHEXT`.
  * 
- * > **🛡️ Require Runtime Permissions**
+ * > **🛡️ Runtime Permissions**
  * > 
- * > - Deno
- * >   - Environment Variable (`env`)
- * >     - `PATHEXT`
+ * > - Environment Variable \[Deno: `env`\]
+ * >   - `PATHEXT` (Windows Platforms)
  * @param {...string} values Value that need to delete from the environment variable `PATHEXT`.
  * @returns {void}
  */
-export const deleteEnvPathExt: EnvPathExt["delete"] = (...values: string[]): void => {
+export function deleteEnvPathExt(...values: string[]): void {
 	assertValuesFileExtension(...values);
 	if (isOSWindows && values.length > 0) {
 		const {
@@ -106,14 +101,13 @@ export const deleteEnvPathExt: EnvPathExt["delete"] = (...values: string[]): voi
 /**
  * Get the values of the environment variable `PATHEXT`; Always return `null` for non Windows operate system.
  * 
- * > **🛡️ Require Runtime Permissions**
+ * > **🛡️ Runtime Permissions**
  * > 
- * > - Deno
- * >   - Environment Variable (`env`)
- * >     - `PATHEXT`
+ * > - Environment Variable \[Deno: `env`\]
+ * >   - `PATHEXT` (Windows Platforms)
  * @returns {string[] | null} Values of the environment variable `PATHEXT`.
  */
-export const getEnvPathExt: EnvPathExt["get"] = (): string[] | null => {
+export function getEnvPathExt(): string[] | null {
 	if (!isOSWindows) {
 		return null;
 	}

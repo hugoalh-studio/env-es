@@ -22,11 +22,10 @@ export interface EnvPath {
 	/**
 	 * Add value to the environment variable `PATH`.
 	 * 
-	 * > **🛡️ Require Runtime Permissions**
+	 * > **🛡️ Runtime Permissions**
 	 * > 
-	 * > - Deno
-	 * >   - Environment Variable (`env`)
-	 * >     - `PATH`
+	 * > - Environment Variable \[Deno: `env`\]
+	 * >   - `PATH`
 	 * @param {...string} values Value that need to add to the environment variable `PATH`.
 	 * @returns {void}
 	 */
@@ -34,11 +33,10 @@ export interface EnvPath {
 	/**
 	 * Delete value from the environment variable `PATH`.
 	 * 
-	 * > **🛡️ Require Runtime Permissions**
+	 * > **🛡️ Runtime Permissions**
 	 * > 
-	 * > - Deno
-	 * >   - Environment Variable (`env`)
-	 * >     - `PATH`
+	 * > - Environment Variable \[Deno: `env`\]
+	 * >   - `PATH`
 	 * @param {...string} values Value that need to delete from the environment variable `PATH`.
 	 * @returns {void}
 	 */
@@ -46,11 +44,10 @@ export interface EnvPath {
 	/**
 	 * Get the values of the environment variable `PATH`.
 	 * 
-	 * > **🛡️ Require Runtime Permissions**
+	 * > **🛡️ Runtime Permissions**
 	 * > 
-	 * > - Deno
-	 * >   - Environment Variable (`env`)
-	 * >     - `PATH`
+	 * - Environment Variable \[Deno: `env`\]
+	 * >   - `PATH`
 	 * @returns {string[]} Values of the environment variable `PATH`.
 	 */
 	get(): string[];
@@ -58,15 +55,14 @@ export interface EnvPath {
 /**
  * Add value to the environment variable `PATH`.
  * 
- * > **🛡️ Require Runtime Permissions**
+ * > **🛡️ Runtime Permissions**
  * > 
- * > - Deno
- * >   - Environment Variable (`env`)
- * >     - `PATH`
+ * > - Environment Variable \[Deno: `env`\]
+ * >   - `PATH`
  * @param {...string} values Value that need to add to the environment variable `PATH`.
  * @returns {void}
  */
-export const addEnvPath: EnvPath["add"] = (...values: string[]): void => {
+export function addEnvPath(...values: string[]): void {
 	assertValuesAbsolutePath(...values);
 	if (values.length > 0) {
 		const { result: target } = getEnvPathInternal();
@@ -79,15 +75,14 @@ export const addEnvPath: EnvPath["add"] = (...values: string[]): void => {
 /**
  * Delete value from the environment variable `PATH`.
  * 
- * > **🛡️ Require Runtime Permissions**
+ * > **🛡️ Runtime Permissions**
  * > 
- * > - Deno
- * >   - Environment Variable (`env`)
- * >     - `PATH`
+ * > - Environment Variable \[Deno: `env`\]
+ * >   - `PATH`
  * @param {...string} values Value that need to delete from the environment variable `PATH`.
  * @returns {void}
  */
-export const deleteEnvPath: EnvPath["delete"] = (...values: string[]): void => {
+export function deleteEnvPath(...values: string[]): void {
 	assertValuesAbsolutePath(...values);
 	if (values.length > 0) {
 		const {
@@ -106,14 +101,13 @@ export const deleteEnvPath: EnvPath["delete"] = (...values: string[]): void => {
 /**
  * Get the values of the environment variable `PATH`.
  * 
- * > **🛡️ Require Runtime Permissions**
+ * > **🛡️ Runtime Permissions**
  * > 
- * > - Deno
- * >   - Environment Variable (`env`)
- * >     - `PATH`
+ * > - Environment Variable \[Deno: `env`\]
+ * >   - `PATH`
  * @returns {string[]} Values of the environment variable `PATH`.
  */
-export const getEnvPath: EnvPath["get"] = (): string[] => {
+export function getEnvPath(): string[] {
 	return Array.from(getEnvPathInternal().result.values());
 };
 /**
