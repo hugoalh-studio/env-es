@@ -42,7 +42,7 @@ export interface EnvPathExt {
 	 */
 	delete(...values: string[]): void;
 	/**
-	 * Get the values of the environment variable `PATHEXT`; Always return `null` for non Windows operate system.
+	 * Get the values of the environment variable `PATHEXT`; Always return `null` for non Windows platforms.
 	 * 
 	 * > **🛡️ Runtime Permissions**
 	 * > 
@@ -99,7 +99,7 @@ export function deleteEnvPathExt(...values: string[]): void {
 	}
 };
 /**
- * Get the values of the environment variable `PATHEXT`; Always return `null` for non Windows operate system.
+ * Get the values of the environment variable `PATHEXT`; Always return `null` for non Windows platforms.
  * 
  * > **🛡️ Runtime Permissions**
  * > 

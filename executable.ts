@@ -253,20 +253,20 @@ export interface IsExecutablePathOptions {
 	 */
 	mayNotExist?: boolean;
 	/**
-	 * Effective group ID to check executable mode flags on POSIX/UNIX system.
+	 * Effective group ID to check executable mode flags on POSIX/UNIX platforms.
 	 * 
 	 * Default to the group ID of the current process.
 	 */
 	gid?: number;
 	/**
-	 * Effective user ID to check executable mode flags on POSIX/UNIX system.
+	 * Effective user ID to check executable mode flags on POSIX/UNIX platforms.
 	 * 
 	 * Default to the user ID of the current process.
 	 */
 	uid?: number;
 }
 /**
- * Determine whether the path is executable on the POSIX/UNIX operate system.
+ * Determine whether the path is executable on the POSIX/UNIX platforms.
  * 
  * > **🛡️ Runtime Permissions**
  * > 
@@ -312,7 +312,7 @@ function isExecutablePathInternalPOSIX(stat: Deno.FileInfo, options: IsExecutabl
 	);
 }
 /**
- * Determine whether the path is executable on the Windows operate system.
+ * Determine whether the path is executable on the Windows platforms.
  * @returns {boolean} Determine result.
  */
 function isExecutablePathInternalWindows(path: string, stat: Deno.FileInfo, pathExts: string[]): boolean {
@@ -384,7 +384,7 @@ function isExecutablePathInternalSync(path: string, options: IsExecutablePathOpt
 	}
 }
 /**
- * Determine whether the path is executable on the current operate system, asynchronously.
+ * Determine whether the path is executable on the current platform, asynchronously.
  * 
  * > **🛡️ Runtime Permissions**
  * > 
@@ -403,7 +403,7 @@ export function isExecutablePath(path: string, options: IsExecutablePathOptions 
 	return isExecutablePathInternal(path, options);
 }
 /**
- * Determine whether the path is executable on the current operate system, synchronously.
+ * Determine whether the path is executable on the current platform, synchronously.
  * 
  * > **🛡️ Runtime Permissions**
  * > 

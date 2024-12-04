@@ -4,15 +4,15 @@ import {
 	setEnv
 } from "./env.ts";
 /**
- * Environment variables value delimiter character colon, use on the POSIX/UNIX operate systems.
+ * Environment variables value delimiter character colon, use on the POSIX/UNIX platforms.
  */
 export const delimiterColon = ":" as const;
 /**
- * Environment variables value delimiter character semi colon, use on the Windows operate systems.
+ * Environment variables value delimiter character semi colon, use on the Windows platforms.
  */
 export const delimiterSemiColon = ";" as const;
 /**
- * Environment variables value delimiter character evaluated for the current operate system.
+ * Environment variables value delimiter character evaluated for the current platform.
  */
 export const delimiter: typeof delimiterColon | typeof delimiterSemiColon = isOSWindows ? delimiterSemiColon : delimiterColon;
 /**
