@@ -81,15 +81,15 @@ An ES (JavaScript & TypeScript) module for enhanced environment variables operat
   ```
 - ```ts
   interface EnvPath {
-    add(...values: string[]): void;
-    delete(...values: string[]): void;
+    add(...values: readonly string[]): void;
+    delete(...values: readonly string[]): void;
     get(): string[];
   }
   ```
 - ```ts
   interface EnvPathExt {
-    add(...values: string[]): void;
-    delete(...values: string[]): void;
+    add(...values: readonly string[]): void;
+    delete(...values: readonly string[]): void;
     get(): string[] | null;
   }
   ```

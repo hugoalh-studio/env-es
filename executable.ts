@@ -8,16 +8,16 @@ export interface GetExecutableOptions {
 	/**
 	 * Whether to include the entries in the working directory.
 	 * 
-	 * - **`false`:** Do not include the entries in the working directory.
-	 * - **`true`:** Do include the entries in the working directory, which use current process working directory.
-	 * - **`string`:** Do include the entries in the working directory, which specify.
+	 * - **`false`:** Exclude the entries in the working directory.
+	 * - **`true`:** Include the entries in the working directory, which use current working directory.
+	 * - **`string`:** Include the entries in the working directory, which specify.
 	 * @default {false}
 	 */
 	cwd?: boolean | string;
 	/**
 	 * Filter the entries which match any filter. Use `string` for exact match, use `RegExp` for expression match. By default, all of the entries will yield.
 	 */
-	filters?: (string | RegExp)[];
+	filters?: readonly (string | RegExp)[];
 }
 export interface ExecutableEntry {
 	/**
