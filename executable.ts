@@ -73,8 +73,8 @@ export async function* getAllExecutable(options: GetExecutableOptions = {}): Asy
 				const path: string = joinPath(envPath, basename);
 				try {
 					if (
-						!(await isExecutablePathInternal(path, {}, envPathExts)) ||
-						yielded.has(path)
+						yielded.has(path) ||
+						!(await isExecutablePathInternal(path, {}, envPathExts))
 					) {
 						continue;
 					}
@@ -153,8 +153,8 @@ export function* getAllExecutableSync(options: GetExecutableOptions = {}): Gener
 				const path: string = joinPath(envPath, basename);
 				try {
 					if (
-						!(isExecutablePathInternalSync(path, {}, envPathExts)) ||
-						yielded.has(path)
+						yielded.has(path) ||
+						!(isExecutablePathInternalSync(path, {}, envPathExts))
 					) {
 						continue;
 					}
@@ -265,10 +265,10 @@ export interface IsExecutablePathOptions {
 	 */
 	uid?: number;
 }
-function isExecutablePathInternalPOSIX(stat: Deno.FileInfo, options: IsExecutablePathOptions = {}): boolean {
-	if (!stat.isFile) {
-		return false;
-	}
+const g = 0o010;
+const o = 0o001;
+const u = 0o100;
+function isExecutablePathInternalPOSIX(stat: Deno.FileInfo, options: IsExecutablePathOptions): boolean {
 	const ownGid: number | null = options.gid ?? Deno.gid();
 	const ownUid: number | null = options.uid ?? Deno.uid();
 	if (ownGid === null) {
@@ -289,9 +289,6 @@ function isExecutablePathInternalPOSIX(stat: Deno.FileInfo, options: IsExecutabl
 	if (pathUid === null) {
 		throw new Error(`Unable to get the user ID of the file!`);
 	}
-	const g: number = Number.parseInt('010', 8);
-	const o: number = Number.parseInt('001', 8);
-	const u: number = Number.parseInt('100', 8);
 	return (
 		Boolean(pathMode & o) ||
 		(Boolean(pathMode & g) && ownGid === pathGid) ||
@@ -299,10 +296,7 @@ function isExecutablePathInternalPOSIX(stat: Deno.FileInfo, options: IsExecutabl
 		(Boolean(pathMode & (u | g)) && ownUid === 0)
 	);
 }
-function isExecutablePathInternalWindows(path: string, stat: Deno.FileInfo, pathExts: string[]): boolean {
-	if (!stat.isFile) {
-		return false;
-	}
+function isExecutablePathInternalWindows(path: string, pathExts: string[]): boolean {
 	const pathLowerCase: string = path.toLowerCase();
 	return pathExts.some((pathExt: string): boolean => {
 		const pathExtLowerCase: string = pathExt.toLowerCase();
@@ -313,8 +307,11 @@ async function isExecutablePathInternal(path: string, options: IsExecutablePathO
 	const { mayNotExist = false } = options;
 	try {
 		const stat: Deno.FileInfo = await Deno.stat(path);
+		if (!stat.isFile) {
+			return false;
+		}
 		if (isOSWindows) {
-			return isExecutablePathInternalWindows(path, stat, pathExts ?? getEnvPathExt()!);
+			return isExecutablePathInternalWindows(path, pathExts ?? getEnvPathExt()!);
 		}
 		return isExecutablePathInternalPOSIX(stat, options);
 	} catch (error) {
@@ -328,8 +325,11 @@ function isExecutablePathInternalSync(path: string, options: IsExecutablePathOpt
 	const { mayNotExist = false } = options;
 	try {
 		const stat: Deno.FileInfo = Deno.statSync(path);
+		if (!stat.isFile) {
+			return false;
+		}
 		if (isOSWindows) {
-			return isExecutablePathInternalWindows(path, stat, pathExts ?? getEnvPathExt()!);
+			return isExecutablePathInternalWindows(path, pathExts ?? getEnvPathExt()!);
 		}
 		return isExecutablePathInternalPOSIX(stat, options);
 	} catch (error) {
