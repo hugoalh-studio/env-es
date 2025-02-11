@@ -265,18 +265,6 @@ export interface IsExecutablePathOptions {
 	 */
 	uid?: number;
 }
-/**
- * Determine whether the path is executable on the POSIX/UNIX platforms.
- * 
- * > **🛡️ Runtime Permissions**
- * > 
- * > - System Info \[Deno: `sys`\]
- * >   - `gid`
- * >   - `uid`
- * @param {Deno.FileInfo} stat Stat of the path.
- * @param {IsExecutablePathOptions} [options={}] Options.
- * @returns {boolean} Determine result.
- */
 function isExecutablePathInternalPOSIX(stat: Deno.FileInfo, options: IsExecutablePathOptions = {}): boolean {
 	if (!stat.isFile) {
 		return false;
@@ -311,10 +299,6 @@ function isExecutablePathInternalPOSIX(stat: Deno.FileInfo, options: IsExecutabl
 		(Boolean(pathMode & (u | g)) && ownUid === 0)
 	);
 }
-/**
- * Determine whether the path is executable on the Windows platforms.
- * @returns {boolean} Determine result.
- */
 function isExecutablePathInternalWindows(path: string, stat: Deno.FileInfo, pathExts: string[]): boolean {
 	if (!stat.isFile) {
 		return false;
@@ -325,20 +309,6 @@ function isExecutablePathInternalWindows(path: string, stat: Deno.FileInfo, path
 		return (pathLowerCase !== pathExtLowerCase && pathLowerCase.endsWith(pathExtLowerCase));
 	});
 }
-/**
- * Determine whether the path is executable, asynchronously.
- * 
- * > **🛡️ Runtime Permissions**
- * > 
- * > - Environment Variable \[Deno: `env`\]
- * >   - `PATHEXT` (Windows Platforms)
- * > - File System - Read \[Deno: `read`; NodeJS (>= v20.9.0) 🧪: `fs-read`\]
- * >   - *Resources*
- * > - System Info \[Deno: `sys`\]
- * >   - `gid` (POSIX/UNIX Platforms)
- * >   - `uid` (POSIX/UNIX Platforms)
- * @returns {Promise<boolean>} Determine result.
- */
 async function isExecutablePathInternal(path: string, options: IsExecutablePathOptions, pathExts?: string[] | null): Promise<boolean> {
 	const { mayNotExist = false } = options;
 	try {
@@ -354,20 +324,6 @@ async function isExecutablePathInternal(path: string, options: IsExecutablePathO
 		throw error;
 	}
 }
-/**
- * Determine whether the path is executable, synchronously.
- * 
- * > **🛡️ Runtime Permissions**
- * > 
- * > - Environment Variable \[Deno: `env`\]
- * >   - `PATHEXT` (Windows Platforms)
- * > - File System - Read \[Deno: `read`; NodeJS (>= v20.9.0) 🧪: `fs-read`\]
- * >   - *Resources*
- * > - System Info \[Deno: `sys`\]
- * >   - `gid` (POSIX/UNIX Platforms)
- * >   - `uid` (POSIX/UNIX Platforms)
- * @returns {boolean} Determine result.
- */
 function isExecutablePathInternalSync(path: string, options: IsExecutablePathOptions, pathExts?: string[] | null): boolean {
 	const { mayNotExist = false } = options;
 	try {

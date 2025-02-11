@@ -8,10 +8,10 @@ function assertValuesAbsolutePath(...values: string[]): void {
 	});
 }
 function getEnvPathInternal() {
-	const resultArray: string[] = envDelimitation.get("PATH");
+	const resultArray: readonly string[] = envDelimitation.get("PATH");
 	const resultSet: Set<string> = new Set<string>(resultArray);
 	return {
-		hasDuplicated: resultArray.length === resultSet.size,
+		hasDuplicated: resultArray.length !== resultSet.size,
 		result: resultSet
 	};
 }

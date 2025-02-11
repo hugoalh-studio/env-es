@@ -11,7 +11,7 @@ function getEnvPathExtInternal() {
 	const resultArray: readonly string[] = envDelimitation.get("PATHEXT");
 	const resultSet: Set<string> = new Set<string>(resultArray);
 	return {
-		hasDuplicated: resultArray.length === resultSet.size,
+		hasDuplicated: resultArray.length !== resultSet.size,
 		result: resultSet
 	};
 }
